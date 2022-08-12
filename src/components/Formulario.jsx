@@ -3,14 +3,20 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Alerta from "./Alerta";
 const Formulario = () => {
+  //validacion mediante un esquema empleando Yup
   const nuevoClienteSquema = Yup.object().shape({
     nombre: Yup.string()
       .min(3, "El nombre es muy corto")
       .max(20, "El nombre es muy largo")
       .required("El nombre del cliente es Obligatorio"),
-    empresa: "",
-    email: "",
-    telefono: "",
+    empresa: Yup.string().required("El nombre de la empresa es obligatrio"),
+    email: Yup.string()
+      .email("Email no valido")
+      .required("El email es olbigatorio"),
+    telefono: Yup.number()
+      .integer("Numero no valido")
+      .positive("Numero no valido")
+      .typeError("El numero no es valido"),
     notas: "",
   });
 
@@ -66,6 +72,9 @@ const Formulario = () => {
                   placeholder="Nombre de la empresa "
                   name="empresa"
                 ></Field>
+                {errors.empresa && touched.empresa ? (
+                  <Alerta>{errors.empresa}</Alerta>
+                ) : null}
               </div>
               <div className="mb-4">
                 <label htmlFor="email" className="text-gray-800">
@@ -78,6 +87,9 @@ const Formulario = () => {
                   placeholder="Email del cliente  "
                   name="email"
                 ></Field>
+                {errors.email && touched.email ? (
+                  <Alerta>{errors.email}</Alerta>
+                ) : null}
               </div>
               <div className="mb-4">
                 <label htmlFor="telefono" className="text-gray-800">
@@ -90,6 +102,9 @@ const Formulario = () => {
                   placeholder="Telefono del cliente  "
                   name="telefono"
                 ></Field>
+                {errors.telefono && touched.telefono ? (
+                  <Alerta>{errors.telefono}</Alerta>
+                ) : null}
               </div>
               <div className="mb-4">
                 <label htmlFor="notas" className="text-gray-800">
