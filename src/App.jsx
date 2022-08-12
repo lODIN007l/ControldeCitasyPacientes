@@ -1,10 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import IniciarSesion from "./layout/IniciarSession";
+import Layout from "./layout/Layout";
+import Inicio from "./pages/Inicio";
 
 function App() {
   return (
-    <div>
-      <h1 className="text-6xl font-extraboldf">Control Pacientes React</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<IniciarSesion />}></Route>
+        <Route path="/clientes" element={<Layout />}>
+          <Route element={Inicio} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
