@@ -1,0 +1,28 @@
+{
+  "clientes": [
+    {
+      "nombre": "Wilson",
+      "empresa": "Empresa",
+      "email": "wilsonlluilema007@gmail.com",
+      "telefono": "0984612108",
+      "notas": "sfsfsdf",
+      "id": 1
+    },
+    {
+      "nombre": "Wilson",
+      "empresa": "Empresa",
+      "email": "odineldios3@gmail.com",
+      "telefono": "032362128",
+      "notas": "xcxff",
+      "id": 2
+    },
+    {
+      "nombre": "Mari",
+      "empresa": "mARIMAR",
+      "email": "joset@gmail.com",
+      "telefono": "06999999999",
+      "notas": "",
+      "id": 3
+    }
+  ]
+}

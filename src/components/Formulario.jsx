@@ -2,7 +2,12 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Alerta from "./Alerta";
+//para redirigir
+import { useNavigate } from "react-router-dom";
+
 const Formulario = () => {
+  const navegar = useNavigate();
+
   //validacion mediante un esquema empleando Yup
   const nuevoClienteSquema = Yup.object().shape({
     nombre: Yup.string()
@@ -20,8 +25,24 @@ const Formulario = () => {
     notas: "",
   });
 
-  const hnndleSubmit = (valores) => {
-    console.log(valores);
+  const hnndleSubmit = async (valores) => {
+    // console.log(valores);
+
+    try {
+      const url = "http://localhost:4000/clientes";
+      const respuesta = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(valores),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const resultado = await respuesta.json(respuesta);
+      console.log(resultado);
+      navegar("/clientes");
+    } catch (error) {
+      console.log("erorr");
+    }
   };
 
   return (
@@ -37,8 +58,9 @@ const Formulario = () => {
           telefono: "",
           notas: "",
         }}
-        onSubmit={(valores) => {
-          hnndleSubmit(valores);
+        onSubmit={async (valores, { resetForm }) => {
+          await hnndleSubmit(valores);
+          resetForm();
         }}
         validationSchema={nuevoClienteSquema}
       >
