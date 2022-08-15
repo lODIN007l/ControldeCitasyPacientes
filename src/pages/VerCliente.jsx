@@ -37,7 +37,7 @@ const VerCliente = () => {
         <span className="text-gray-800 uppercase font-bold">Cliente:</span>
         {cliente.nombre}
       </p>
-      <p className="text-gray-600 text-2xl mt-4">
+      <p className="text-gray-600 text-2xl mt-4 ">
         <span className="text-gray-800 uppercase font-bold">Email:</span>
         {cliente.email}
       </p>
